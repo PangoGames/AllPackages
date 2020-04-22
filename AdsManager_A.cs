@@ -447,6 +447,7 @@ public class AdsManager_A : MonoBehaviour {
         }
        
         currentRw = _currentRw;
+        
         if (MaxSdk.IsRewardedAdReady(rewardedAdUnitId))
         {
 
