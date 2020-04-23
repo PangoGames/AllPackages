@@ -25,17 +25,17 @@ public class EventVariables : MonoBehaviour
         AppsFlyer.setAppsFlyerKey("1509259545");//Burayı değiştirmiyoruz
         /* For detailed logging */
         /* AppsFlyer.setIsDebug (true); */
-        #if UNITY_IOS
+#if UNITY_IOS
         /* Mandatory - set your apple app ID
         NOTE: You should enter the number only and not the "ID" prefix */
 
         AppsFlyer.setAppID("1500867328"); //Buraya appstore id girilecek !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         AppsFlyer.getConversionData();
         AppsFlyer.trackAppLaunch();
-        #elif UNITY_ANDROID
+#elif UNITY_ANDROID
          /* For getting the conversion data in Android, you need to add the "AppsFlyerTrackerCallbacks" listener.*/
          AppsFlyer.init ("YOUR_APPSFLYER_DEV_KEY","AppsFlyerTrackerCallbacks");
-        #endif
+#endif
 
 
         //Start kısmına kod yazmayalım
@@ -49,10 +49,11 @@ public class EventVariables : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-       
-        LevelStart();
 
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, version, PlayerPrefs.GetInt("LevelCount").ToString(),/*Score*/ 0);
+        LevelStart();
+        GameAnalytics.SetCustomDimension01("TestDimension");
+
     }
 
     public void LevelStart()
@@ -163,6 +164,6 @@ public class EventVariables : MonoBehaviour
     public void RemoteValueGA()
     {
         if (GameAnalytics.IsRemoteConfigsReady())
-             valueForXX = GameAnalytics.GetRemoteConfigsValueAsString("VALUE", "1");
+            valueForXX = GameAnalytics.GetRemoteConfigsValueAsString("VALUE", "1");
     }
 }
